@@ -1,20 +1,27 @@
-﻿using Homework2.Third_Task.Contacts;
+using Homework2.Third_Task.Contacts;
 
 namespace Homework2.Third_Task;
 
-public class Training : ITraining
+public class Training : ITraning
 {
-    public List<ITrainingComponent> components;
+    public ITrainingComponent[] components;
 
     public Training(int capacity)
     {
-        components = new List<ITrainingComponent>(capacity);
+        components = new ITrainingComponent[capacity];
     }
     public string Description { get; set; }
                                                      
     public void Add(ITrainingComponent component)
     {
-        components.Add(component);
+        for (int i = 0; i < components.Length; i++)
+        {
+            if (components[i] == null)
+            {
+                components[i] = component;
+                return;
+            }
+        }
     }
 
     public bool IsPractical()
@@ -32,13 +39,15 @@ public class Training : ITraining
 
     public object Clone()
     {
-        var clone = new Training(components.Count);
-        foreach (var component in components)
+        var clone = new Training(components.Length);
+        for (int i = 0; i < components.Length; i++)
         {
-            clone.Add((ITrainingComponent)component.Clone());
+            if (components[i] != null)
+            {
+                clone.components[i] = (ITrainingComponent)components[i].Clone();
+            }
         }
         clone.Description = Description;
         return clone;
     }
 }
-
