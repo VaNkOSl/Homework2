@@ -1,18 +1,18 @@
-﻿using Homework2.Third_Task.Contacts;
+using Homework2.Third_Task.Contacts;
 
 namespace Homework2.Third_Task
 {
-    public class PracticalLesson : ITrainingComponent
+    public class PracticalLesson : TrainingComponentBase
     {
         public string Description { get; set; }
         public string TaskLink { get; set; }
 
         public string SolutionLink { get; set; }
 
-
-        public object Clone()
+        public override object Clone()
         {
-           return new PracticalLesson {  Description = Description, TaskLink = TaskLink , SolutionLink = SolutionLink };
+            return new PracticalLesson { Description = Description, TaskLink = TaskLink, SolutionLink = SolutionLink };
+
         }
     }
 }
