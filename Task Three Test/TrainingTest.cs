@@ -1,4 +1,4 @@
-﻿using Homework2.Third_Task;
+using Homework2.Third_Task;
 
 namespace UnitTest.Task_Three_Test;
 
@@ -16,20 +16,25 @@ public class TrainingTest
         Training cloneTraining = (Training)originalTraining.Clone();
 
         Assert.IsNotNull(cloneTraining);
-        Assert.AreEqual(originalTraining.components.Count, cloneTraining.components.Count);
+        Assert.AreEqual(originalTraining.components.Length, cloneTraining.components.Length);
         Assert.AreEqual(originalTraining.Description, cloneTraining.Description);
 
-        for (int i = 0; i < originalTraining.components.Count; i++)
+        for (int i = 0; i < originalTraining.components.Length; i++)
         {
-            Assert.AreNotSame(originalTraining.components[i], cloneTraining.components[i]);
+            if (originalTraining.components[i] != null)
+            {
+                Assert.IsNotNull(cloneTraining.components[i]);
+                Assert.AreNotSame(originalTraining.components[i], cloneTraining.components[i]);
 
-            Assert.IsInstanceOfType(cloneTraining.components[i], typeof(Lecture));
+                Assert.IsInstanceOfType(cloneTraining.components[i], typeof(Lecture));
 
-            Lecture originalLecture = (Lecture)originalTraining.components[i];
-            Lecture cloneLecture = (Lecture)cloneTraining.components[i];
-            Assert.AreEqual(originalLecture.Description, cloneLecture.Description);
-            Assert.AreEqual(originalLecture.Topic, cloneLecture.Topic);
+                Lecture originalLecture = (Lecture)originalTraining.components[i];
+                Lecture cloneLecture = (Lecture)cloneTraining.components[i];
+                Assert.AreEqual(originalLecture.Description, cloneLecture.Description);
+                Assert.AreEqual(originalLecture.Topic, cloneLecture.Topic);
+            }
         }
     }
 }
+
 
