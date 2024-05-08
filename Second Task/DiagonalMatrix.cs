@@ -1,4 +1,4 @@
-﻿namespace Homework2.Second_Task;
+namespace Homework2.Second_Task;
 
 public class DiagonalMatrix 
 {
@@ -24,25 +24,15 @@ public class DiagonalMatrix
     {
         get
         {
-            if (IsOutOfBounds(i, j) || !IsDiagonalElement(i, j))
+            if (this.IsOutOfBounds(i, j) || !this.IsDiagonalElement(i, j))
                 return 0;
             return elements[i];
         }
         set
         {
-            if (!IsOutOfBounds(i, j) && IsDiagonalElement(i, j))
+            if (!this.IsOutOfBounds(i, j) && this.IsDiagonalElement(i, j))
                 elements[i] = value;
         }
-    }
-
-    private bool IsOutOfBounds(int i, int j)
-    {
-        return i < 0 || j < 0 || i >= Size || j >= Size;
-    }
-
-    private bool IsDiagonalElement(int i, int j)
-    {
-        return i == j;
     }
 
     public double Track()
